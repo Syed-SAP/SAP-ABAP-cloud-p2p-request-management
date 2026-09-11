@@ -1,0 +1,24 @@
+@EndUserText.label : 'P2P Purchase Request Item Draft Table'
+@AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zp2p_req_item_d {
+
+  key mandt       : mandt not null;
+  key item_uuid   : sysuuid_x16 not null;
+  request_uuid    : sysuuid_x16;
+  item_number     : abap.numc(5);
+  material_desc   : abap.char(100);
+  quantity        : abap.dec(13,3);
+  unit            : abap.char(3);
+  unit_price      : abap.dec(15,2);
+  item_total      : abap.dec(15,2);
+  currency        : abap.cuky;
+  created_by      : abp_creation_user;
+  created_at      : abp_creation_tstmpl;
+  last_changed_by : abp_locinst_lastchange_user;
+  last_changed_at : abp_locinst_lastchange_tstmpl;
+  "%admin"        : include sych_bdl_draft_admin_inc;
+
+}
