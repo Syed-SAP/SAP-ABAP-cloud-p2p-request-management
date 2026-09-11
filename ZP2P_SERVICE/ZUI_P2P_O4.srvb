@@ -1,0 +1,22 @@
+Service Binding: ZUI_P2P_O4
+
+Binding Type:
+OData V4 - UI
+
+Service Definition:
+ZUI_P2P
+
+Service Version:
+1.0.0
+
+Published:
+Yes
+
+Exposed Entity Sets:
+- PurchaseRequest
+  - _Item
+- PurchaseRequestItem
+  - _Request
+
+Purpose:
+OData V4 UI service binding for the SAP ABAP Cloud P2P Purchase Request Management System.
