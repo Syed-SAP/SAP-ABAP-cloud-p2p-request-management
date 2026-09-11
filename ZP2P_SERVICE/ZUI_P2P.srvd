@@ -1,0 +1,8 @@
+@EndUserText.label: 'P2P Purchase Request OData Service'
+
+define service ZUI_P2P {
+
+  expose ZC_P2P_REQUEST_P    as PurchaseRequest;
+  expose ZC_P2P_REQ_ITEM_P   as PurchaseRequestItem;
+
+}
