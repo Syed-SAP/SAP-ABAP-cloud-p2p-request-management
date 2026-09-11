@@ -1,0 +1,107 @@
+@Metadata.layer: #CORE
+
+annotate entity ZC_P2P_REQUEST_P
+  with
+{
+  @UI.facet: [
+    {
+      id: 'GeneralInformation',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'General Information',
+      position: 10
+    },
+    {
+      id: 'RequestItems',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Request Items',
+      position: 20,
+      targetElement: '_Item'
+    }
+  ]
+
+  @UI.hidden: true
+  request_uuid;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  request_id;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  requester_id;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  department;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  category;
+
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
+  description;
+
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 70 }]
+  total_amount;
+
+  @UI.lineItem: [{ position: 80 }]
+  @UI.identification: [{ position: 80 }]
+  currency;
+
+  @UI.lineItem: [{ position: 90 }]
+  @UI.identification: [{ position: 90 }]
+  required_date;
+
+  @UI.identification: [{ position: 100 }]
+  justification;
+
+  @UI.lineItem: [{ position: 100 }]
+  @UI.identification: [
+   { position: 110 },
+
+   {
+     type: #FOR_ACTION,
+     dataAction: 'submitRequest',
+     label: 'Submit Request',
+     position: 200
+   },
+
+   {
+     type: #FOR_ACTION,
+     dataAction: 'approveRequest',
+     label: 'Approve Request',
+     position: 210
+   },
+
+   {
+     type: #FOR_ACTION,
+     dataAction: 'rejectRequest',
+     label: 'Reject Request',
+     position: 220
+   },
+
+   {
+     type: #FOR_ACTION,
+     dataAction: 'recalculateTotal',
+     label: 'Recalculate Total',
+     position: 230
+   }
+]
+status;
+
+  @UI.identification: [{ position: 120 }]
+  created_by;
+
+  @UI.identification: [{ position: 130 }]
+  created_at;
+
+  @UI.identification: [{ position: 140 }]
+  last_changed_by;
+
+  @UI.identification: [{ position: 150 }]
+  last_changed_at;
+};
