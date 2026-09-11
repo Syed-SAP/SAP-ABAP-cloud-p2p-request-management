@@ -1,0 +1,26 @@
+@EndUserText.label : 'P2P Purchase Request Draft Table'
+@AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zp2p_request_d {
+
+  key mandt        : mandt not null;
+  key request_uuid : sysuuid_x16 not null;
+  request_id       : abap.char(10);
+  requester_id     : abap.char(20);
+  department       : abap.char(30);
+  category         : abap.char(20);
+  description      : abap.char(100);
+  total_amount     : abap.dec(15,2);
+  currency         : abap.cuky;
+  required_date    : abap.dats;
+  justification    : abap.char(255);
+  status           : abap.char(20);
+  created_by       : abp_creation_user;
+  created_at       : abp_creation_tstmpl;
+  last_changed_by  : abp_locinst_lastchange_user;
+  last_changed_at  : abp_locinst_lastchange_tstmpl;
+  "%admin"         : include sych_bdl_draft_admin_inc;
+
+}
