@@ -1,0 +1,60 @@
+managed implementation in class zbp_c_p2p_request unique;
+strict(2);
+with draft;
+
+define behavior for ZC_P2P_REQUEST
+persistent table zp2p_request
+draft table zp2p_request_d
+lock master
+total etag last_changed_at
+authorization master ( none )
+etag master last_changed_at
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) request_uuid;
+  field ( readonly ) last_changed_at;
+  field ( readonly ) status;
+
+  association _Item { create; with draft; }
+
+  action ( features : instance ) submitRequest result [1] $self;
+  action ( features : instance ) approveRequest result [1] $self;
+  action ( features : instance ) rejectRequest result [1] $self;
+  action recalculateTotal result [1] $self;
+
+  determination setInitialStatus on modify { create; }
+  validation validateTotalAmount on save { create; update; }
+  validation validateRequiredDate on save { create; update; }
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}
+
+define behavior for ZC_P2P_REQ_ITEM
+persistent table zp2p_req_item
+draft table zp2p_req_item_d
+lock dependent by _Request
+authorization dependent by _Request
+etag master last_changed_at
+{
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) item_uuid;
+  field ( readonly ) request_uuid;
+  field ( readonly ) last_changed_at;
+  field ( readonly ) item_total;
+
+  determination calculateItemTotal on modify {
+    create;
+    field quantity, unit_price;
+  }
+
+  association _Request { with draft; }
+}
